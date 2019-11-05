@@ -262,78 +262,57 @@ data = readpickle('data.pkl')
 
 # In[25]:
 
+logisticRegr = LogisticRegression(solver = 'lbfgs')
+
 # fold 1
 fold1 = data['fold1']
 fold1_train = fold1['train']
 fold1_val = fold1['val']
 fold1_test = fold1['test']
 
-xtrain, ytrain = fold1_train['x'],fold1_train['y']
-xval, yval = fold1_val['x'], fold1_val['y']
-xtest, ytest = fold1_test['x'],fold1_test['y']
+xtrain_1, ytrain_1 = fold1_train['x'],fold1_train['y']
+xval_1, yval_1 = fold1_val['x'], fold1_val['y']
+xtest_1, ytest_1 = fold1_test['x'],fold1_test['y']
 
-xtrain.shape, ytrain.shape
+xtrain_1.shape, ytrain_1.shape
 
-xval.shape, yval.shape
+xval_1.shape, yval_1.shape
 
-xtest.shape,ytest.shape
+xtest_1.shape,ytest_1.shape
 
 # fit the training data
-logisticRegr = LogisticRegression(solver = 'lbfgs')
-logisticRegr.fit(xtrain, ytrain.ravel())
+logisticRegr.fit(xtrain_1, ytrain_1.ravel())
 
-
-# do test
-logisticRegr.predict(xtest[0].reshape(1,-1))
-logisticRegr.predict(xtest[0:])
-predictions = logisticRegr.predict(xtest)
-score_test_fold1 = logisticRegr.score(xtest, ytest)
-print("TEST 1: ", score_test_fold1)
-
-# do val
-logisticRegr.predict(xval[0].reshape(1,-1))
-logisticRegr.predict(xval[0:])
-predictions = logisticRegr.predict(xval)
-score_val_fold1 = logisticRegr.score(xval, yval)
-print("VAL 1: ", score_val_fold1)
+# do regression
+score_test_fold1 = logisticRegr.score(xtest_1, ytest_1)
+score_val_fold1 = logisticRegr.score(xval_1, yval_1)
+print("VAL 1: ", score_val_fold1, " TEST 1: ", score_test_fold1)
 
 
 
 # fold 2
 fold2 = data['fold2']
-fold2_train = fold1['train']
-fold2_val = fold1['val']
-fold2_test = fold1['test']
+fold2_train = fold2['train']
+fold2_val = fold2['val']
+fold2_test = fold2['test']
 
-xtrain, ytrain = fold2_train['x'],fold2_train['y']
-xval, yval = fold2_val['x'], fold2_val['y']
-xtest, ytest = fold2_test['x'],fold2_test['y']
+xtrain_2, ytrain_2 = fold2_train['x'],fold2_train['y']
+xval_2, yval_2 = fold2_val['x'], fold2_val['y']
+xtest_2, ytest_2= fold2_test['x'],fold2_test['y']
 
-xtrain.shape, ytrain.shape
+xtrain_2.shape, ytrain_2.shape
 
-xval.shape, yval.shape
+xval_2.shape, yval_2.shape
 
-xtest.shape,ytest.shape
-
+xtest_2.shape,ytest_2.shape
 
 # fit the training data
-logisticRegr = LogisticRegression(solver = 'lbfgs')
-logisticRegr.fit(xtrain, ytrain.ravel())
+logisticRegr.fit(xtrain_2, ytrain_2.ravel())
 
-
-# do test
-logisticRegr.predict(xtest[0].reshape(1,-1))
-logisticRegr.predict(xtest[0:])
-predictions = logisticRegr.predict(xtest)
-score_test_fold2 = logisticRegr.score(xtest, ytest)
-print("TEST 2: ", score_test_fold2)
-
-# do val
-logisticRegr.predict(xval[0].reshape(1,-1))
-logisticRegr.predict(xval[0:])
-predictions = logisticRegr.predict(xval)
-score_val_fold2 = logisticRegr.score(xval, yval)
-print("VAL 2: ", score_val_fold2)
+# do regression
+score_test_fold2 = logisticRegr.score(xtest_2, ytest_2)
+score_val_fold2 = logisticRegr.score(xval_2, yval_2)
+print("VAL 2: ", score_val_fold2, " TEST 2: ", score_test_fold2)
 
 
 
@@ -343,114 +322,80 @@ fold3_train = fold3['train']
 fold3_val = fold3['val']
 fold3_test = fold3['test']
 
-xtrain, ytrain = fold3_train['x'],fold3_train['y']
-xval, yval = fold3_val['x'], fold3_val['y']
-xtest, ytest = fold3_test['x'],fold3_test['y']
+xtrain_3, ytrain_3 = fold3_train['x'],fold3_train['y']
+xval_3, yval_3 = fold3_val['x'], fold3_val['y']
+xtest_3, ytest_3 = fold3_test['x'],fold3_test['y']
 
-xtrain.shape, ytrain.shape
+xtrain_3.shape, ytrain_3.shape
 
-xval.shape, yval.shape
+xval_3.shape, yval_3.shape
 
-xtest.shape,ytest.shape
-
+xtest_3.shape,ytest_3.shape
 
 # fit the training data
-logisticRegr = LogisticRegression(solver = 'lbfgs')
-logisticRegr.fit(xtrain, ytrain.ravel())
+logisticRegr.fit(xtrain_3, ytrain_3.ravel())
 
+# do regression
+score_test_fold3 = logisticRegr.score(xtest_3, ytest_3)
+score_val_fold3 = logisticRegr.score(xval_3, yval_3)
+print("VAL 3: ", score_val_fold3, " TEST 3: ", score_test_fold3)
 
-# do test
-logisticRegr.predict(xtest[0].reshape(1,-1))
-logisticRegr.predict(xtest[0:])
-predictions = logisticRegr.predict(xtest)
-score_test_fold3 = logisticRegr.score(xtest, ytest)
-print("TEST 3: ", score_test_fold3)
-
-# do val
-logisticRegr.predict(xval[0].reshape(1,-1))
-logisticRegr.predict(xval[0:])
-predictions = logisticRegr.predict(xval)
-score_val_fold3 = logisticRegr.score(xval, yval)
-print("VAL 3: ", score_val_fold3)
 
 
 # fold 4
 fold4 = data['fold4']
-fold4_train = fold1['train']
-fold4_val = fold1['val']
-fold4_test = fold1['test']
+fold4_train = fold4['train']
+fold4_val = fold4['val']
+fold4_test = fold4['test']
 
-xtrain, ytrain = fold4_train['x'],fold4_train['y']
-xval, yval = fold4_val['x'], fold4_val['y']
-xtest, ytest = fold4_test['x'],fold4_test['y']
+xtrain_4, ytrain_4 = fold4_train['x'],fold4_train['y']
+xval_4, yval_4 = fold4_val['x'], fold4_val['y']
+xtest_4, ytest_4 = fold4_test['x'],fold4_test['y']
 
-xtrain.shape, ytrain.shape
+xtrain_4.shape, ytrain_4.shape
 
-xval.shape, yval.shape
+xval_4.shape, yval_4.shape
 
-xtest.shape,ytest.shape
-
+xtest_4.shape,ytest_4.shape
 
 # fit the training data
-logisticRegr = LogisticRegression(solver = 'lbfgs')
-logisticRegr.fit(xtrain, ytrain.ravel())
+logisticRegr.fit(xtrain_4, ytrain_4.ravel())
 
+# do regression
+score_test_fold4 = logisticRegr.score(xtest_4, ytest_4)
+score_val_fold4 = logisticRegr.score(xval_4, yval_4)
+print("VAL 4: ", score_val_fold4, " TEST 4: ", score_test_fold4)
 
-# do test
-logisticRegr.predict(xtest[0].reshape(1,-1))
-logisticRegr.predict(xtest[0:])
-predictions = logisticRegr.predict(xtest)
-score_test_fold4 = logisticRegr.score(xtest, ytest)
-print("TEST 4: ", score_test_fold4)
-
-# do val
-logisticRegr.predict(xval[0].reshape(1,-1))
-logisticRegr.predict(xval[0:])
-predictions = logisticRegr.predict(xval)
-score_val_fold4 = logisticRegr.score(xval, yval)
-print("VAL 4: ", score_val_fold4)
 
 
 # fold 5
 fold5 = data['fold5']
-fold5_train = fold1['train']
-fold5_val = fold1['val']
-fold5_test = fold1['test']
+fold5_train = fold5['train']
+fold5_val = fold5['val']
+fold5_test = fold5['test']
 
-xtrain, ytrain = fold5_train['x'],fold5_train['y']
-xval, yval = fold5_val['x'], fold5_val['y']
-xtest, ytest = fold5_test['x'],fold5_test['y']
+xtrain_5, ytrain_5 = fold5_train['x'],fold5_train['y']
+xval_5, yval_5 = fold5_val['x'], fold5_val['y']
+xtest_5, ytest_5 = fold5_test['x'],fold5_test['y']
 
-xtrain.shape, ytrain.shape
+xtrain_5.shape, ytrain_5.shape
 
-xval.shape, yval.shape
+xval_5.shape, yval_5.shape
 
-xtest.shape,ytest.shape
+xtest_5.shape,ytest_5.shape
 
 # fit the training data
-logisticRegr = LogisticRegression(solver = 'lbfgs')
-logisticRegr.fit(xtrain, ytrain.ravel())
+logisticRegr.fit(xtrain_5, ytrain_5.ravel())
 
+# do regression
+score_test_fold5 = logisticRegr.score(xtest_5, ytest_5)
+score_val_fold5 = logisticRegr.score(xval_5, yval_5)
+print("VAL 5: ", score_val_fold5, " TEST 5: ", score_test_fold5)
 
-# do test
-logisticRegr.predict(xtest[0].reshape(1,-1))
-logisticRegr.predict(xtest[0:])
-predictions = logisticRegr.predict(xtest)
-score_test_fold5 = logisticRegr.score(xtest, ytest)
-print("TEST 5: ", score_test_fold5)
-
-# do val
-logisticRegr.predict(xval[0].reshape(1,-1))
-logisticRegr.predict(xval[0:])
-predictions = logisticRegr.predict(xval)
-score_val_fold5 = logisticRegr.score(xval, yval)
-print("VAL 5: ", score_val_fold5)
-
+# get averages
 avg_test = (score_test_fold1 + score_test_fold2 + score_test_fold3 + score_test_fold4 + score_test_fold5)/5
-print("AVERAGE TEST: ", avg_test)
-
 avg_val = (score_val_fold1 + score_val_fold2 + score_val_fold3 + score_val_fold4 + score_val_fold5)/5
-print("AVERAGE VAL: ", avg_val)
+print("AVERAGE VAL: ", avg_val, " AVERAGE TEST: ", avg_test)
 
 # learning_rate = 0.005
 # epochs = 50
@@ -459,10 +404,10 @@ print("AVERAGE VAL: ", avg_val)
 
 
 # <h1 style="color:green">!!!!!!!!!! NOTES !!!!!!!!!!</h1>
-# 
+#
 #     This walkthrough is just to make your life easier
 #     If you want to use your own ways of doing data processing it is fine
-#     You can continue your assignment right-away from below or setup 
+#     You can continue your assignment right-away from below or setup
 #     a project like assignment 1. You can use any library you want
 
 # <h1 style="color:red">!!!!!!!!!! WARNING !!!!!!!!!!</h1>
