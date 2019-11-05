@@ -121,7 +121,7 @@ xtest_1, ytest_1 = fold1_test['x'],fold1_test['y']
 # fit the training data
 lr.fit(xtrain_1, ytrain_1.ravel())
 
-# do regression
+# get accuracy
 score_test_fold1 = lr.score(xtest_1, ytest_1)
 score_val_fold1 = lr.score(xval_1, yval_1)
 
@@ -139,7 +139,7 @@ xtest_2, ytest_2= fold2_test['x'],fold2_test['y']
 # fit the training data
 lr.fit(xtrain_2, ytrain_2.ravel())
 
-# do regression
+# get accuracy
 score_test_fold2 = lr.score(xtest_2, ytest_2)
 score_val_fold2 = lr.score(xval_2, yval_2)
 
@@ -157,7 +157,7 @@ xtest_3, ytest_3 = fold3_test['x'],fold3_test['y']
 # fit the training data
 lr.fit(xtrain_3, ytrain_3.ravel())
 
-# do regression
+# get accuracy
 score_test_fold3 = lr.score(xtest_3, ytest_3)
 score_val_fold3 = lr.score(xval_3, yval_3)
 
@@ -175,7 +175,7 @@ xtest_4, ytest_4 = fold4_test['x'],fold4_test['y']
 # fit the training data
 lr.fit(xtrain_4, ytrain_4.ravel())
 
-# do regression
+# get accuracy
 score_test_fold4 = lr.score(xtest_4, ytest_4)
 score_val_fold4 = lr.score(xval_4, yval_4)
 
@@ -193,7 +193,7 @@ xtest_5, ytest_5 = fold5_test['x'],fold5_test['y']
 # fit the training data
 lr.fit(xtrain_5, ytrain_5.ravel())
 
-# do regression
+# get accuracy
 score_test_fold5 = lr.score(xtest_5, ytest_5)
 score_val_fold5 = lr.score(xval_5, yval_5)
 
@@ -204,6 +204,7 @@ avg_val = (score_val_fold1 + score_val_fold2 + score_val_fold3 + score_val_fold4
 
 
 # set up output
+print("------ ACCURACY -------")
 val_test_data = {"VAL" :["--------", score_val_fold1, score_val_fold2, score_val_fold3, score_val_fold4, score_val_fold5, "--------", avg_val],
                  "TEST" :["--------", score_test_fold1, score_test_fold2, score_test_fold3, score_test_fold4, score_test_fold5, "--------",  avg_test]}
 val_test_labels = ["---", "1", "2", "3", "4", "5", "---", "AVG"]
