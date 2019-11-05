@@ -6,10 +6,6 @@
 
 import pandas as pd
 import urllib
-
-import sklearn
-import tensorflow as tf
-from IPython import get_ipython
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 import os
@@ -17,8 +13,8 @@ import numpy as np
 from operator import itemgetter
 import pickle
 import seaborn as sns
-import matplotlib.pyplot as plt
-from sklearn.preprocessing import OneHotEncoder
+
+
 # requirements : 
 #     recommended platform : ubuntu
 #     python == 3.7
@@ -262,7 +258,7 @@ data = readpickle('data.pkl')
 
 # In[25]:
 
-logisticRegr = LogisticRegression(solver = 'lbfgs')
+lr = LogisticRegression(solver = 'lbfgs')
 
 # fold 1
 fold1 = data['fold1']
@@ -274,19 +270,12 @@ xtrain_1, ytrain_1 = fold1_train['x'],fold1_train['y']
 xval_1, yval_1 = fold1_val['x'], fold1_val['y']
 xtest_1, ytest_1 = fold1_test['x'],fold1_test['y']
 
-xtrain_1.shape, ytrain_1.shape
-
-xval_1.shape, yval_1.shape
-
-xtest_1.shape,ytest_1.shape
-
 # fit the training data
-logisticRegr.fit(xtrain_1, ytrain_1.ravel())
+lr.fit(xtrain_1, ytrain_1.ravel())
 
 # do regression
-score_test_fold1 = logisticRegr.score(xtest_1, ytest_1)
-score_val_fold1 = logisticRegr.score(xval_1, yval_1)
-print("VAL 1: ", score_val_fold1, " TEST 1: ", score_test_fold1)
+score_test_fold1 = lr.score(xtest_1, ytest_1)
+score_val_fold1 = lr.score(xval_1, yval_1)
 
 
 
@@ -300,19 +289,12 @@ xtrain_2, ytrain_2 = fold2_train['x'],fold2_train['y']
 xval_2, yval_2 = fold2_val['x'], fold2_val['y']
 xtest_2, ytest_2= fold2_test['x'],fold2_test['y']
 
-xtrain_2.shape, ytrain_2.shape
-
-xval_2.shape, yval_2.shape
-
-xtest_2.shape,ytest_2.shape
-
 # fit the training data
-logisticRegr.fit(xtrain_2, ytrain_2.ravel())
+lr.fit(xtrain_2, ytrain_2.ravel())
 
 # do regression
-score_test_fold2 = logisticRegr.score(xtest_2, ytest_2)
-score_val_fold2 = logisticRegr.score(xval_2, yval_2)
-print("VAL 2: ", score_val_fold2, " TEST 2: ", score_test_fold2)
+score_test_fold2 = lr.score(xtest_2, ytest_2)
+score_val_fold2 = lr.score(xval_2, yval_2)
 
 
 
@@ -326,19 +308,12 @@ xtrain_3, ytrain_3 = fold3_train['x'],fold3_train['y']
 xval_3, yval_3 = fold3_val['x'], fold3_val['y']
 xtest_3, ytest_3 = fold3_test['x'],fold3_test['y']
 
-xtrain_3.shape, ytrain_3.shape
-
-xval_3.shape, yval_3.shape
-
-xtest_3.shape,ytest_3.shape
-
 # fit the training data
-logisticRegr.fit(xtrain_3, ytrain_3.ravel())
+lr.fit(xtrain_3, ytrain_3.ravel())
 
 # do regression
-score_test_fold3 = logisticRegr.score(xtest_3, ytest_3)
-score_val_fold3 = logisticRegr.score(xval_3, yval_3)
-print("VAL 3: ", score_val_fold3, " TEST 3: ", score_test_fold3)
+score_test_fold3 = lr.score(xtest_3, ytest_3)
+score_val_fold3 = lr.score(xval_3, yval_3)
 
 
 
@@ -352,19 +327,12 @@ xtrain_4, ytrain_4 = fold4_train['x'],fold4_train['y']
 xval_4, yval_4 = fold4_val['x'], fold4_val['y']
 xtest_4, ytest_4 = fold4_test['x'],fold4_test['y']
 
-xtrain_4.shape, ytrain_4.shape
-
-xval_4.shape, yval_4.shape
-
-xtest_4.shape,ytest_4.shape
-
 # fit the training data
-logisticRegr.fit(xtrain_4, ytrain_4.ravel())
+lr.fit(xtrain_4, ytrain_4.ravel())
 
 # do regression
-score_test_fold4 = logisticRegr.score(xtest_4, ytest_4)
-score_val_fold4 = logisticRegr.score(xval_4, yval_4)
-print("VAL 4: ", score_val_fold4, " TEST 4: ", score_test_fold4)
+score_test_fold4 = lr.score(xtest_4, ytest_4)
+score_val_fold4 = lr.score(xval_4, yval_4)
 
 
 
@@ -378,77 +346,22 @@ xtrain_5, ytrain_5 = fold5_train['x'],fold5_train['y']
 xval_5, yval_5 = fold5_val['x'], fold5_val['y']
 xtest_5, ytest_5 = fold5_test['x'],fold5_test['y']
 
-xtrain_5.shape, ytrain_5.shape
-
-xval_5.shape, yval_5.shape
-
-xtest_5.shape,ytest_5.shape
-
 # fit the training data
-logisticRegr.fit(xtrain_5, ytrain_5.ravel())
+lr.fit(xtrain_5, ytrain_5.ravel())
 
 # do regression
-score_test_fold5 = logisticRegr.score(xtest_5, ytest_5)
-score_val_fold5 = logisticRegr.score(xval_5, yval_5)
-print("VAL 5: ", score_val_fold5, " TEST 5: ", score_test_fold5)
+score_test_fold5 = lr.score(xtest_5, ytest_5)
+score_val_fold5 = lr.score(xval_5, yval_5)
+
+
 
 # get averages
 avg_test = (score_test_fold1 + score_test_fold2 + score_test_fold3 + score_test_fold4 + score_test_fold5)/5
 avg_val = (score_val_fold1 + score_val_fold2 + score_val_fold3 + score_val_fold4 + score_val_fold5)/5
-print("AVERAGE VAL: ", avg_val, " AVERAGE TEST: ", avg_test)
 
-# learning_rate = 0.005
-# epochs = 50
-# batch = 100
-# batches = int(xtrain.shape[0] / batch)
+# set up output
+val_test_data = {"VAL" :[score_val_fold1, score_val_fold2, score_val_fold3, score_val_fold4, score_val_fold5, avg_val],
+                 "TEST" :[score_test_fold1, score_test_fold2, score_test_fold3, score_test_fold4, score_test_fold5, avg_test]}
+val_test_labels = ["1", "2", "3", "4", "5", "AVG"]
 
-
-# <h1 style="color:green">!!!!!!!!!! NOTES !!!!!!!!!!</h1>
-#
-#     This walkthrough is just to make your life easier
-#     If you want to use your own ways of doing data processing it is fine
-#     You can continue your assignment right-away from below or setup
-#     a project like assignment 1. You can use any library you want
-
-# <h1 style="color:red">!!!!!!!!!! WARNING !!!!!!!!!!</h1>
-# 
-#     1. DO NOT SUBMIT .DOCX FILE
-#     2. NAME YOUR FILE IN FOLLOWING MANNER net_id_homework_2.pdf
-#     3. SUBMIT BOTH ASSIGNMENT(OPENED) AND YOUR DROPBOX
-#     4. YOUR REPORT SHOULD CONTAIN LINK TO YOUR GITHUB 
-#     5. ADD COMMENTS TO INCREASE READIBILITY IN YOUR CODE
-
-# ### Now use above dataset to complete following work
-
-# # Assignment 2
-#     You can use any libraires you want, but choose python as your platform
-#     
-#     1. Implement Logistic Regression on this 5 fold data
-#     2. Report Test Accuracy, Val Accuracy on each fold
-#        Follow following format
-#        ________________________
-#        
-#             |  ACCURACY   
-#        FOLD | VAL | TEST  
-#        ________________________
-#             |     |
-#        1    |  ?? |  ??
-#        2    |  ?? |  ??
-#        3    |  ?? |  ??
-#        4    |  ?? |  ??
-#        5    |  ?? |  ??
-#        ________________________
-#        AVG  |  ?? |  ??
-#        
-#     3. Report Visualization
-#     
-#     NOTE :  You must submit two things
-#             First : A pdf report with following explanation
-#                     - What tools you used and why?
-#                     - Metrics as explained in (2)
-#                     - Visualization/Graph
-#                     - Conclude your experiment
-#                     - Add a github repo as report
-# 
-#             Second : A github repo
-#     
+print(pd.DataFrame(val_test_data, val_test_labels))
