@@ -360,8 +360,8 @@ avg_test = (score_test_fold1 + score_test_fold2 + score_test_fold3 + score_test_
 avg_val = (score_val_fold1 + score_val_fold2 + score_val_fold3 + score_val_fold4 + score_val_fold5)/5
 
 # set up output
-val_test_data = {"VAL" :[score_val_fold1, score_val_fold2, score_val_fold3, score_val_fold4, score_val_fold5, avg_val],
-                 "TEST" :[score_test_fold1, score_test_fold2, score_test_fold3, score_test_fold4, score_test_fold5, avg_test]}
-val_test_labels = ["1", "2", "3", "4", "5", "AVG"]
+val_test_data = {"VAL" :["--------", score_val_fold1, score_val_fold2, score_val_fold3, score_val_fold4, score_val_fold5, "--------", avg_val],
+                 "TEST" :["--------", score_test_fold1, score_test_fold2, score_test_fold3, score_test_fold4, score_test_fold5, "--------",  avg_test]}
+val_test_labels = ["---", "1", "2", "3", "4", "5", "---", "AVG"]
 
 print(pd.DataFrame(val_test_data, val_test_labels))
